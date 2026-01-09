@@ -146,7 +146,7 @@
     <!-- VISITOR COUNT -->
     <div class="card visitor-count">
       <h2>Visitor Count</h2>
-      <p>You are visitor #<span id="count">0</span></p>
+      <p><span id="count"></span></p>
     </div>
 
   </div>
@@ -157,12 +157,17 @@
 
   <!-- VISITOR COUNTER SCRIPT -->
 <script>
-  fetch("https://api.countapi.xyz/hit/crumblin.net/visits")
+  fetch("https://api.countapi.xyz/hit/crumblin-net/visits?cb=" + Date.now())
     .then(response => response.json())
     .then(data => {
       document.getElementById("count").textContent = data.value;
+    })
+    .catch(err => {
+      console.error("Visitor counter error:", err);
+      document.getElementById("count").textContent = "error";
     });
 </script>
+
 
 
 </body>
