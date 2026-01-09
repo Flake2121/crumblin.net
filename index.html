@@ -16,9 +16,11 @@
 
     body {
       min-height: 100vh;
-      background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(45deg,
+        #0000ac, #101010, #400000,
+        #101010, #000040, #101010, #ac0000);
       background-size: 600% 600%;
-      animation: gradientBG 15s ease infinite;
+      animation: gradientBG 35s ease infinite;
       color: #ffffff;
       display: flex;
       flex-direction: column;
@@ -31,10 +33,19 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
     header {
       margin-top: 60px;
-      text-align: center;
-      animation: fadeDown 1.2s ease forwards;
+      width: 90%;
+      max-width: 800px;
+      animation: fadeDown 1.5s ease forwards;
     }
 
     header h1 {
@@ -47,18 +58,18 @@
       margin-top: 10px;
     }
 
-    @keyframes fadeDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+    @media (max-width: 600px) {
+      header {
+        text-align: center;
       }
     }
 
-    .container {
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    main {
       width: 90%;
       max-width: 800px;
       margin-top: 60px;
@@ -66,28 +77,27 @@
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 16px;
       padding: 30px;
       margin-bottom: 30px;
       backdrop-filter: blur(10px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.08),
+        0 10px 30px rgba(0,0,0,0.25);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
 
     .card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.15),
+        0 20px 40px rgba(0,0,0,0.35);
     }
 
     h2 {
@@ -95,22 +105,41 @@
       font-size: 1.8rem;
     }
 
-    ul {
+    nav ul {
       list-style: none;
     }
 
-    ul li {
+    nav li {
       padding: 10px 0;
       border-bottom: 1px solid rgba(255,255,255,0.2);
     }
 
-    ul li:last-child {
+    nav li:last-child {
       border-bottom: none;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.85;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      opacity: 1;
+      text-decoration: underline;
+      outline: none;
     }
 
     .visitor-count {
       text-align: center;
       font-size: 1.2rem;
+    }
+
+    .ascii {
+      font-family: monospace;
+      white-space: pre;
+      font-size: 0.95rem;
       opacity: 0.9;
     }
 
@@ -120,93 +149,221 @@
       font-size: 0.9rem;
       opacity: 0.6;
     }
+
+    /* Keyboard focus */
+    a:focus-visible {
+      outline: 2px solid rgba(255,255,255,0.6);
+      outline-offset: 4px;
+    }
+.ascii.typing::after {
+  content: "▋";
+  animation: blink 1s steps(1) infinite;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.terminal-cursor {
+  display: inline;
+  animation: blink 1s steps(1) infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <h1>crumblin.net</h1>
-    <p>version 0.1</p>
-  </header>
+<header>
+  <h1>crumblin.net</h1>
+  <p>v0.2</p>
+</header>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
+<main>
+  <nav class="card">
+    <h2>Contents</h2>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/projects">Projects</a></li>
+    </ul>
+  </nav>
+<div class="card ascii">page uptime: <span id="uptime">00:00:00</span>
+</div>
 
-    <!-- CONTENTS SECTION -->
-    <div class="card">
-      <h2>Contents</h2>
-      <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Projects</li>
-      </ul>
-    </div>
+<div class="card ascii" id="terminal">
+  <pre id="terminal-text">
+  $ systemctl status crumblin
+● crumblin.service - cool guy
+   Loaded: loaded
+   Active: active (running)
+   Since: 2011-02-02
 
-    <!-- VISITOR COUNT -->
-    <div class="card visitor-count">
-      <h2>Visitor Count</h2>
-      <p>Visitors: <span id="count">loading...</span></p>
-    </div>
-
+Memory: stable
+Network: online
+Aura: high
+</pre>
   </div>
 
-  <footer>
-    ㋡ crumblin.net: version 0.1-090126
-  </footer>
+  <div class="card visitor-count">
+    <h2>Visitor Count</h2>
+    <p>
+      Visitors:
+      <noscript>JS disabled</noscript>
+      <span id="count">loading...</span>
+    </p>
+  </div>
 
-  <!-- VISITOR COUNTER SCRIPT -->
+</main>
+
+<footer>
+   ㋡ crumblin.net · v0.2-090126 
+</footer>
 <script type="module">
-  import {initializeApp} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import {getFirestore, doc, runTransaction, getDoc} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, doc, runTransaction, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+document.addEventListener("DOMContentLoaded", () => {
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ===== Visitor Counter =====
   const firebaseConfig = {
-  apiKey: "AIzaSyCTzv1pZoOvDkuMt9A2WO4fo0RyxvXY-6k",
-  authDomain: "crumblin-net-counter.firebaseapp.com",
-  projectId: "crumblin-net-counter",
-  storageBucket: "crumblin-net-counter.firebasestorage.app",
-  messagingSenderId: "648331896892",
-  appId: "1:648331896892:web:faa322bc99b3028e713b39"
-};
+    apiKey: "AIzaSyCTzv1pZoOvDkuMt9A2WO4fo0RyxvXY-6k",
+    authDomain: "crumblin-net-counter.firebaseapp.com",
+    projectId: "crumblin-net-counter",
+    storageBucket: "crumblin-net-counter.firebasestorage.app",
+    messagingSenderId: "648331896892",
+    appId: "1:648331896892:web:faa322bc99b3028e713b39"
+  };
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const counterRef = doc(db, "counters", "visits");
-
-  const counterEl = document.getElementById("count");
-
-  // 🔒 Session-based protection
+  const countEl = document.getElementById("count");
   const SESSION_KEY = "crumblin-counted";
 
-  async function updateCounter() {
-    // If already counted this session, just read value
-    if (sessionStorage.getItem(SESSION_KEY)) {
-      const snap = await getDoc(counterRef);
-      counterEl.textContent = snap.exists() ? snap.data().count : 0;
-      return;
+  function animateCount(to, duration = 1500) {
+    if (!countEl) return;
+    const startTime = performance.now();
+    const startValue = 0;
+
+    function update(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const current = Math.floor(startValue + (to - startValue) * progress);
+      countEl.textContent = current;
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        countEl.textContent = to;
+      }
     }
 
-    // First visit this session → increment
-    const newCount = await runTransaction(db, async (t) => {
-      const snap = await t.get(counterRef);
-
-      if (!snap.exists()) {
-        t.set(counterRef, {count: 1});
-        return 1;
-      }
-
-      const updated = snap.data().count + 1;
-      t.update(counterRef, {count: updated});
-      return updated;
-    });
-
-    sessionStorage.setItem(SESSION_KEY, "yes");
-    counterEl.textContent = newCount;
+    requestAnimationFrame(update);
   }
 
-  updateCounter().catch(() => {
-    counterEl.textContent = "error";
-  });
+  async function updateCounter() {
+    if (!countEl) return;
+    try {
+      if (sessionStorage.getItem(SESSION_KEY)) {
+        const snap = await getDoc(counterRef);
+        animateCount(snap.exists() ? snap.data().count : 0);
+        return;
+      }
+
+      const newCount = await runTransaction(db, async (t) => {
+        const snap = await t.get(counterRef);
+        if (!snap.exists()) {
+          t.set(counterRef, { count: 1 });
+          return 1;
+        }
+        const updated = snap.data().count + 1;
+        t.update(counterRef, { count: updated });
+        return updated;
+      });
+
+      sessionStorage.setItem(SESSION_KEY, "yes");
+      animateCount(newCount);
+    } catch {
+      countEl.textContent = "unavailable";
+    }
+  }
+
+  updateCounter();
+
+  // ===== Page Uptime =====
+  const uptimeEl = document.getElementById("uptime");
+  const startTime = Date.now();
+
+  function formatTime(ms) {
+    const total = Math.floor(ms / 1000);
+    const h = String(Math.floor(total / 3600)).padStart(2, "0");
+    const m = String(Math.floor((total % 3600) / 60)).padStart(2, "0");
+    const s = String(total % 60).padStart(2, "0");
+    return `${h}:${m}:${s}`;
+  }
+
+  if (uptimeEl) {
+    if (!prefersReduced) {
+      setInterval(() => {
+        uptimeEl.textContent = formatTime(Date.now() - startTime);
+      }, 1000);
+    } else {
+      uptimeEl.textContent = formatTime(Date.now() - startTime);
+    }
+  }
+
+  // ===== Terminal Typing Animation =====
+  const terminal = document.getElementById("terminal");
+  const terminalTextEl = document.getElementById("terminal-text");
+
+  if (terminal && terminalTextEl) {
+    const textSpan = document.createElement("span");
+    textSpan.className = "terminal-text-span";
+    textSpan.textContent = terminalTextEl.textContent.trim();
+    terminalTextEl.textContent = "";
+    terminalTextEl.appendChild(textSpan);
+
+    const cursor = document.createElement("span");
+    cursor.className = "terminal-cursor";
+    cursor.textContent = "▋";
+    terminalTextEl.appendChild(cursor);
+
+    function typeText(el) {
+      const fullText = el.textContent;
+      el.textContent = "";
+      let i = 0;
+      const interval = setInterval(() => {
+        el.textContent += fullText[i];
+        i++;
+        if (i >= fullText.length) clearInterval(interval);
+      }, 18);
+    }
+
+    const startTyping = () => typeText(textSpan);
+
+    if (prefersReduced) {
+      textSpan.textContent = textSpan.textContent;
+    } else {
+      const rect = terminal.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        startTyping();
+      } else {
+        const observer = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            startTyping();
+            observer.disconnect();
+          }
+        }, { threshold: 0.4 });
+        observer.observe(terminal);
+      }
+    }
+  }
+});
 </script>
 
 </body>
