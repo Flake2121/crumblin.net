@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Website</title>
+  <title>crumblin.net</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -126,8 +126,8 @@
 
   <!-- HEADER -->
   <header>
-    <h1>Your Name Here</h1>
-    <p>Welcome to my personal website</p>
+    <h1>crumblin.net</h1>
+    <p>version 0.1</p>
   </header>
 
   <!-- MAIN CONTENT -->
@@ -137,10 +137,9 @@
     <div class="card">
       <h2>Contents</h2>
       <ul>
-        <li>🏠 Home</li>
-        <li>📄 About</li>
-        <li>🛠 Projects</li>
-        <li>📫 Contact</li>
+        <li>Home</li>
+        <li>About</li>
+        <li>Projects</li>
       </ul>
     </div>
 
@@ -153,22 +152,18 @@
   </div>
 
   <footer>
-    © 2026 Your Name. All rights reserved.
+    ㋡ crumblin.net: version 0.1-090126
   </footer>
 
   <!-- VISITOR COUNTER SCRIPT -->
-  <script>
-    let count = localStorage.getItem("visitorCount");
+<script>
+  fetch("https://api.countapi.xyz/hit/yourwebsite.com/visits")
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("count").textContent = data.value;
+    });
+</script>
 
-    if (!count) {
-      count = 1;
-    } else {
-      count = parseInt(count) + 1;
-    }
-
-    localStorage.setItem("visitorCount", count);
-    document.getElementById("count").textContent = count;
-  </script>
 
 </body>
 </html>
