@@ -1,9 +1,174 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+      background-size: 600% 600%;
+      animation: gradientBG 15s ease infinite;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      margin-top: 60px;
+      text-align: center;
+      animation: fadeDown 1.2s ease forwards;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      opacity: 0.8;
+      margin-top: 10px;
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin-top: 60px;
+      animation: fadeUp 1.5s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    ul li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    ul li:last-child {
+      border-bottom: none;
+    }
+
+    .visitor-count {
+      text-align: center;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 20px;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
 <body>
 
-<h1>Test</h1>
-<p>Test small</p>
+  <!-- HEADER -->
+  <header>
+    <h1>Your Name Here</h1>
+    <p>Welcome to my personal website</p>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- CONTENTS SECTION -->
+    <div class="card">
+      <h2>Contents</h2>
+      <ul>
+        <li>🏠 Home</li>
+        <li>📄 About</li>
+        <li>🛠 Projects</li>
+        <li>📫 Contact</li>
+      </ul>
+    </div>
+
+    <!-- VISITOR COUNT -->
+    <div class="card visitor-count">
+      <h2>Visitor Count</h2>
+      <p>You are visitor #<span id="count">0</span></p>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 Your Name. All rights reserved.
+  </footer>
+
+  <!-- VISITOR COUNTER SCRIPT -->
+  <script>
+    let count = localStorage.getItem("visitorCount");
+
+    if (!count) {
+      count = 1;
+    } else {
+      count = parseInt(count) + 1;
+    }
+
+    localStorage.setItem("visitorCount", count);
+    document.getElementById("count").textContent = count;
+  </script>
 
 </body>
 </html>
