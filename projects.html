@@ -1,5 +1,125 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>crumblin.net - Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Reset & body */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", sans-serif; }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(45deg, #0000ac, #101010, #400000, #101010, #000040, #101010, #ac0000);
+      background-size: 600% 600%;
+      animation: gradientBG 35s ease infinite;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 50px;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+    header { margin-top: 60px; width: 90%; max-width: 800px; text-align: center; }
+    header h1 { font-size: 3rem; letter-spacing: 2px; }
+    header p { opacity: 0.8; margin-top: 10px; }
+
+    main { width: 90%; max-width: 1000px; margin-top: 60px; display: flex; flex-direction: column; gap: 40px; }
+
+    h2 { margin-bottom: 15px; font-size: 2rem; }
+
+    /* Nav card */
+    nav.card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    nav ul { list-style: none; }
+    nav li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+    nav li:last-child { border-bottom: none; }
+    nav a { color: #fff; text-decoration: none; opacity: 0.85; }
+    nav a:hover, nav a:focus { opacity:1; text-decoration: underline; }
+
+    /* Project grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    }
+    .project-card img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 15px; }
+    .project-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+    .project-card p { opacity: 0.8; margin-bottom: 15px; }
+    .project-card a { text-decoration: none; color: #fff; font-weight: bold; }
+    .project-card a:hover { text-decoration: underline; }
+
+    footer { margin-top: auto; padding: 20px; font-size: 0.9rem; opacity: 0.6; }
+  </style>
+</head>
 <body>
-Projects
+  <header>
+    <h1>crumblin.net</h1>
+    <p>projects</p>
+  </header>
+
+  <main>
+    <!-- Nav Pane -->
+    <nav class="card">
+      <h2>navigation</h2>
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./projects.html">Projects</a></li>
+      </ul>
+    </nav>
+
+    <!-- Projects Grid -->
+    <h2>my projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="./bouncebox.png" alt="BounceBox Screenshot">
+        <h3>BounceBox</h3>
+        <p>a multicoloured bouncing cube.</p>
+        <a href="https://bounce.crumblin.net" target="_blank">open</a>
+      </div>
+
+      <div class="project-card">
+        <img src="./password.png" alt="Password Project Screenshot">
+        <h3>password</h3>
+        <p>password for secret area of site</p>
+        <a href="./password.html" target="_blank">open</a>
+      </div>
+
+      <div class="project-card">
+        <img src="./github.png" alt="GitHub Project Screenshot">
+        <h3>github</h3>
+        <p>my github page including all of this websites code</p>
+        <a href="https://github.com/flake2121" target="_blank">open</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+   ㋡ crumblin.net · v0.2-090126 
+  </footer>
 </body>
 </html>
