@@ -71,6 +71,25 @@
     .project-card p { opacity: 0.8; margin-bottom: 15px; }
     .project-card a { text-decoration: none; color: #fff; font-weight: bold; }
     .project-card a:hover { text-decoration: underline; }
+    
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.08),
+        0 10px 30px rgba(0,0,0,0.25);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.15),
+        0 20px 40px rgba(0,0,0,0.35);
+    }
 
     footer { margin-top: auto; padding: 20px; font-size: 0.9rem; opacity: 0.6; }
   </style>
