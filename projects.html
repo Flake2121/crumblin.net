@@ -2,113 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="sytle.css">
   <title>crumblin.net - Projects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* Reset & body */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", sans-serif; }
-    body {
-      min-height: 100vh;
-      background: linear-gradient(45deg, #0000ac, #101010, #400000, #101010, #000040, #101010, #ac0000);
-      background-size: 600% 600%;
-      animation: gradientBG 35s ease infinite;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-bottom: 50px;
-    }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
-
-    
-    header h1 { font-size: 3rem; letter-spacing: 2px; }
-    header p { opacity: 0.8; margin-top: 10px; }
-    header {
-      margin-top: 60px;
-      width: 90%;
-      max-width: 800px;
-      animation: fadeDown 1.5s ease forwards;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        text-align: center;
-      }
-    }
-   main {
-      width: 90%;
-      max-width: 800px;
-      margin-top: 60px;
-      animation: fadeUp 1.5s ease forwards;
-    }
-
-    h2 { margin-bottom: 15px; font-size: 2rem; }
-
-    /* Nav card */
-    nav.card {
-      background: rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 30px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    }
-    nav ul { list-style: none; }
-    nav li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
-    nav li:last-child { border-bottom: none; }
-    nav a { color: #fff; text-decoration: none; opacity: 0.85; }
-    nav a:hover, nav a:focus { opacity:1; text-decoration: underline; }
-
-    /* Project grid */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .project-card {
-      background: rgba(255,255,255,0.08);
-      border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15), 0 20px 40px rgba(0,0,0,0.35);
-    }
-    .project-card img { width: 100%; height: auto; border-radius: 12px; margin-bottom: 15px; }
-    .project-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
-    .project-card p { opacity: 0.8; margin-bottom: 15px; }
-    .project-card a { text-decoration: none; color: #fff; font-weight: bold; }
-    .project-card a:hover { text-decoration: underline; }
-    
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 30px;
-      backdrop-filter: blur(10px);
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.08),
-        0 10px 30px rgba(0,0,0,0.25);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,0.15),
-        0 20px 40px rgba(0,0,0,0.35);
-    }
-
-    footer { margin-top: auto; padding: 20px; font-size: 0.9rem; opacity: 0.6; }
-  </style>
 </head>
 <body>
   <header>
@@ -154,7 +50,7 @@
   </main>
 
   <footer>
-   ㋡ crumblin.net · v0.2-100126 
+   ㋡ crumblin.net · v0.3-110126 
   </footer>
 </body>
   <script>
